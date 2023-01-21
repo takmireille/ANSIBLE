@@ -1,0 +1,34 @@
+FROM centos:centos8
+
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+RUN yum update -y
+#RUN yum update -y 2>/dev/null | grep packages | cut -d '.' -f 1
+RUN yum upgrade -y
+
+#RUN yum install -y python3-pip git vim iproute2
+
+RUN yum install openssh-server -y
+
+RUN echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
+
+# Ajoutez votre utilisateur
+RUN useradd -m -s /bin/bash usr_awx
+RUN echo "usr_awx:toto" | chpasswd
+
+# Autoriser l'accès à la cmd sudo pour cet utilisateur
+RUN echo "usr_awx ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+#RUN useradd -rm -d /home/usr_awx -s /bin/bash -g root -G sudo -u 1001 usr_awx
+#USER usr_awx
+#RUN echo 'usr_awx:toto' | chpasswd
+RUN ssh-keygen -A
+# RUN echo "user_name:password" | chpasswd
+
+#RUN systemctl start sshd.service
+RUN echo "root:password" | chpasswd
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
+
+ 

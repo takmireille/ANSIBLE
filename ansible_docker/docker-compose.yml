@@ -26,6 +26,11 @@ services:
     build:
       context: .
       dockerfile: ./serveur_Dockerfile
+
+  serveur_centos:
+    build:
+      context: .
+      dockerfile: ./serveur_centos_Dockerfile
   
   serveur_lb:
     build:
