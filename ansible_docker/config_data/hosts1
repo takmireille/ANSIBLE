@@ -1,0 +1,16 @@
+all:vars]
+ansible_user=usr_awx
+ansible_password=toto
+ansible_connection=local
+
+[prod]
+
+ansible_docker_serveur_centos_1
+ansible_docker_serveur_web_1
+
+[prod:vars]
+ansible_user=usr_awx
+ansible_password=toto
+ansible_connection=local
+env=production
+
