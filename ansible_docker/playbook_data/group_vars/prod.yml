@@ -1,0 +1,4 @@
+---
+ansible_user: usr_awx
+ansible_password: toto
+~                      

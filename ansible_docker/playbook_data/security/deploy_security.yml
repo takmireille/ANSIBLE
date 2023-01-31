@@ -1,0 +1,38 @@
+---
+- name: "templating Apache intallation using docker"
+  hosts: ansible_docker_serveur_centos_1
+  become: true
+  vars_files:
+     - files/secrets/credentiels.yml
+  tasks:
+    - name: install some package
+      package: name={{ item }} state=present
+      when: ansible_distribution == "CentOs"
+      loop:
+        - epel-release
+        - wget
+        - git
+    - name: install python.pip
+      yum:
+        name: python-pip
+        state: present
+        update_cache: yes
+    - name: install docker python
+      pip:
+        name: docker-py
+        state: present
+    - name: copy website file template
+      template:
+        src: /home/usr_awx/ANSIBLE/ansible_docker/playbook_data/templates/index.html.j2
+        dest: /home/usr_awx/index.html
+    - name: apache installtion
+      yum:
+        name: apache2
+        state: present
+    - name: start Apache
+      become: true
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
