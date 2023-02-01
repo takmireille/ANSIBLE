@@ -1,0 +1,13 @@
+---
+- hosts: prod
+  become: true
+  vars:
+    system_user: usr_awx
+  vars_files:
+    - ../securite/files/secrets/credentiels.yml
+  tasks:
+    - name: create www-data
+      user: name=www-data state=present
+  roles:
+    - { role: ansible-role-containerized-wordpress }
+~                                                  
