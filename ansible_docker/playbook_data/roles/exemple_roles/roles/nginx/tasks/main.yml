@@ -1,0 +1,17 @@
+---
+# tasks file for nginx
+- name: install nginx
+  apt:
+    name: ngninx
+    state: present
+    cache_valid_time: 3600
+
+- name: install vhost
+  tempate:
+    src: default_vhost.conf.j2
+    dest: /etc/nginx/sites-available/default_vhost.conf
+    owner: root
+    groop: root
+    mode: 0644
+  notify: road_nginx
+

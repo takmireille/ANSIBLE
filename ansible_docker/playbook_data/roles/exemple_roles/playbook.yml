@@ -1,0 +1,18 @@
+---
+- name: installation de la clé ssh
+  connection: local
+  hosts: cible
+  roles:
+  - ssh_keygen
+
+
+
+
+
+- name: intallation des serveurs (users,nginx)
+  hosts: localhost
+  become: true
+  roles:
+  - users
+  - nginx
+

@@ -1,0 +1,8 @@
+[all:vars]
+ansible_user=usr_awx
+ansible_password=toto
+ansible_connection=local
+
+[cible]
+ ansible_docker_serveur_web_1
+

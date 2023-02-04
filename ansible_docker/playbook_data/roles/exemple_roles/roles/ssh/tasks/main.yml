@@ -1,0 +1,10 @@
+---
+# tasks file for ssh
+- name: generate SSH key
+  openssh_keypair:
+    path: "~/tmp/cle_ssh
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+
