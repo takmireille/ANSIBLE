@@ -1,18 +1,21 @@
 ---
-- name: installation de la clé ssh
-  connection: local
-  hosts: cible
-  roles:
-  - ssh_keygen
-
-
-
-
-
-- name: intallation des serveurs (users,nginx)
+- name: Install same tools on target hosts
   hosts: localhost
   become: true
-  roles:
-  - users
-  - nginx
+  #vars:
+
+  tasks:
+    - import_role:
+        name: ssh-keygen
+
+- name: Install same tools on target hosts
+  hosts: ansible_docker_serveur_web_1
+  become: true
+  #vars:
+
+  tasks:
+    - import_role:
+        name: users
+    - import_role:
+        name: nginx
 
