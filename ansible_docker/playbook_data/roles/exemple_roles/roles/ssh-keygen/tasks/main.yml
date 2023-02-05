@@ -1,8 +1,8 @@
 ---
-# tasks file for ssh
+# tasks file for ssh_keygen
 - name: generate SSH key
   openssh_keypair:
-    path: "~/tmp/cle_ssh
+    path: /home/usr_awx/ANSIBLE/ansible_docker/cle_ssh
     type: rsa
     size: 4096
     state: present
