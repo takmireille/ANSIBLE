@@ -1,0 +1,15 @@
+---
+# tasks file for users
+- name: add user group test
+  add_user_group:
+    name: test
+    pri: "administrator"
+    proviser: "{{ cible }}"
+
+- name: deploy ssh key
+  authorized_key:
+    user: test
+    state: present
+    with_file:
+      - tmp/test_public_key
+~                           
