@@ -1,0 +1,10 @@
+---
+- name: Ping machines cibles
+  hosts: cibles
+  tasks:
+    - name: Ping hosts
+      ping:
+  vars:
+    ansible_ssh_private_key_file: /home/ec2-user/cle-mireille
+
+

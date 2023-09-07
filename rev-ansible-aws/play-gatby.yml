@@ -1,0 +1,26 @@
+---
+- name: Install GCC, Node.js, and Gatsby CLI
+  hosts: cibles  
+  become: yes   
+
+  tasks:
+    - name: Install GCC and make
+      ansible.builtin.yum:
+        name:
+          - gcc-c++
+          - make
+        state: present
+      become: yes
+
+    - name: Install Node.js
+      ansible.builtin.yum:
+        name: nodejs
+        state: present
+      become: yes
+
+    - name: Install Gatsby CLI using NPM
+      ansible.builtin.yum:
+        name: gatsby-cli
+        global: yes
+      become: yes
+
