@@ -19,7 +19,7 @@
       become: yes
 
     - name: Install Gatsby CLI using NPM
-      ansible.builtin.yum:
+      ansible.builtin.npm:
         name: gatsby-cli
         global: yes
       become: yes
